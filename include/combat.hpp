@@ -22,11 +22,6 @@ void Combat() {
 
   do {
     char combat_choice;
-    // std::cout << "Health: " << Enemy.Health << "\n";
-    // std::cout << "AC: " << Enemy.AC << "\n";
-    // std::cout << "DamageDice: " << Enemy.DamageDice << "\n";
-    // std::cout << "DamageDie: " << Enemy.DamageDie << "\n\n";
-    // DebugData();
     std::cout << "1: Attack\n";
     std::cout << "2: Spell[WIP]\n";
     std::cout << "3: Heal - 2 MP\n";
