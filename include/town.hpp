@@ -1,7 +1,7 @@
 #ifndef TOWN_H
 #define TOWN_H
-#include "funct.h"
-#include "resting.h"
+#include "funct.hpp"
+#include "resting.hpp"
 #include <iostream>
 
 void Town() {

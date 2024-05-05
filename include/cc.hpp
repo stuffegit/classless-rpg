@@ -1,6 +1,6 @@
 #ifndef CC_H
 #define CC_H
-#include "funct.h"
+#include "funct.hpp"
 #include <iomanip> // for setw()
 #include <iostream>
 

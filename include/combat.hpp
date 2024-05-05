@@ -1,6 +1,6 @@
 #ifndef COMBAT_H
 #define COMBAT_H
-#include "funct.h"
+#include "funct.hpp"
 #include <iostream>
 
 int CombatResolution{0};

@@ -1,6 +1,6 @@
 #ifndef RESTING_H
 #define RESTING_H
-#include "funct.h"
+#include "funct.hpp"
 #include <iostream>
 
 void Resting() {

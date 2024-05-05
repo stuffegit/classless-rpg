@@ -24,6 +24,7 @@ void Town();
 void DisplayCombatStats();
 void DisplayPlayerStats();
 void DisplayEnemyStats();
+void ClearStats();
 int PressEnter;
 
 // Structs
@@ -130,6 +131,41 @@ void ClearScreen() {
 void Press_Enter() {
   std::cin.ignore(10, '\n');
   std::cin.get();
+}
+
+void ClearStats() {
+  Player.CCMaxHealth = 0;
+  Player.MaxHealth = 0;
+  Player.CurHealth = 0;
+  Player.BaseHealth = 4;
+  Player.ClassHealthBonus = 0;
+  Player.RaceHealthBonus = 0;
+  Player.ProfessionHealthBonus = 0;
+  Player.BirthplaceHealthBonus = 0;
+  Player.CCMaxMana = 0;
+  Player.MaxMana = 0;
+  Player.CurMana = 0;
+  Player.BaseMana = 0;
+  Player.ClassManaBonus = 0;
+  Player.RaceManaBonus = 0;
+  Player.ProfessionManaBonus = 0;
+  Player.BirthplaceManaBonus = 0;
+  Player.DamageDie = 4;
+  Player.DamageDice = 0;
+  Player.BaseDamageDie = 0;
+  Player.HeritageDamageBonus = 0;
+  Player.ClassDamageDieBonus = 0;
+  Player.RaceDamageDieBonus = 0;
+  Player.ProfessionDamageDieBonus = 0;
+  Player.BirthplaceDamageDieBonus = 0;
+  Player.Class = "";
+  Player.Race = "";
+  Player.Profession = "";
+  Player.Birthplace = "";
+  Player.Level = 1;
+  Player.Exp = 0;
+  Player.Silver = 0;
+  Player.Rested = 0;
 }
 
 #endif

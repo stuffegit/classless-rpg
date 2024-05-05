@@ -1,6 +1,6 @@
 #ifndef PROGRESSION_H
 #define PROGRESSION_H
-#include "funct.h"
+#include "funct.hpp"
 #include <iostream>
 
 void CheckLvlUp() {
