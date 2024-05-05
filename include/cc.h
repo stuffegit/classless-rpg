@@ -224,4 +224,24 @@ void RollStats() {
   }
 }
 
+void UpdateValues() {
+  Player.CCMaxHealth = Player.BaseHealth + Player.ClassHealthBonus +
+                       Player.RaceHealthBonus + Player.ProfessionHealthBonus +
+                       Player.BirthplaceHealthBonus;
+  Player.CCMaxMana = Player.BaseMana + Player.ClassManaBonus +
+                     Player.RaceManaBonus + Player.ProfessionManaBonus +
+                     Player.BirthplaceManaBonus;
+  Player.DamageDie = Player.BaseDamageDie + Player.ClassDamageDieBonus +
+                     Player.RaceDamageDieBonus +
+                     Player.ProfessionDamageDieBonus +
+                     Player.BirthplaceDamageDieBonus;
+  Player.DamageDice = 1;
+  Player.CurHealth = Player.CCMaxHealth;
+  Player.CurMana = Player.CCMaxMana;
+  if (Player.CCMaxMana < 0) {
+    Player.CurMana = 0;
+    Player.CCMaxMana = 0;
+  }
+}
+
 #endif
