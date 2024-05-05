@@ -1,14 +1,13 @@
-#include "include/cc.h"
-#include "include/combat.h"
-#include "include/funct.h"
-#include "include/progression.h"
-#include <cstdlib> // random numbers are fun
-#include <ctime>   // time()
+#include "include/cc.h"          // char creation stuff
+#include "include/combat.h"      // duh
+#include "include/funct.h"       // structs, initial declarations
+#include "include/progression.h" // lvlup, Resting
+#include "include/town.h"
+// #include <cstdlib>               // random numbers are fun
+// #include <ctime>                 // time()
 #include <iostream>
-#include <string> // epic txt variables
 
-// is this a good way to handle this?
-int PressEnter;
+int SkipFirstTown{1};
 
 int main() {
   // start random seed
@@ -24,9 +23,11 @@ int main() {
 
     ClearScreen();
     CheckLvlUp();
-    Resting();
+    if (SkipFirstTown == 0) {
+      Town();
+    }
+    SkipFirstTown = 0;
     Combat();
-    // Town();
 
   } while (Defeated == 0);
   std::cout << "Game Over.\n";

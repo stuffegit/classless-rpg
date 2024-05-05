@@ -20,7 +20,9 @@ void RandomEnemy();
 void Press_Enter();
 void CheckLvlUp();
 void Resting();
+void Town();
 void DisplayCombatStats();
+int PressEnter;
 
 // Structs
 struct {
