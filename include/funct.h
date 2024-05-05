@@ -22,6 +22,8 @@ void CheckLvlUp();
 void Resting();
 void Town();
 void DisplayCombatStats();
+void DisplayPlayerStats();
+void DisplayEnemyStats();
 int PressEnter;
 
 // Structs
@@ -60,6 +62,8 @@ struct {
 
   int Level{1};
   int Exp{0};
+  int Silver{0};
+  int Rested{0};
 
 } Player;
 
@@ -70,6 +74,7 @@ struct {
   int DamageDie{0};
   int DamageDice{0};
   int Exp{0};
+  int Silver{1};
 } Enemy;
 
 void DebugData() {
@@ -111,6 +116,7 @@ void DebugDataFull() {
             << "\t Player.ProfessionDamageDieBonus\n";
   std::cout << Player.BirthplaceDamageDieBonus
             << "\t Player.BirthplaceDamageDieBonus\n";
+  std::cout << Player.Silver << "\t Player.Silver\n";
 }
 
 void ClearScreen() {
