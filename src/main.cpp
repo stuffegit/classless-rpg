@@ -1,7 +1,10 @@
+#include "cc.hpp"
+#include "combat.hpp"
 #include "funct.hpp" // structs, initial declarations
+#include "progression.hpp"
+#include "town.hpp"
 #include <iostream>
 
-int PressEnter;
 int SkipFirstTown{1};
 char newgame;
 
@@ -10,11 +13,10 @@ int main() {
   srand(static_cast<unsigned int>(time(0)));
   // this should loop around til its done(or ppl break out with c or q)
   do {
-    ClearStats();
+    // ClearStats();
     char_creation();
     // player finished/exited cc and we need to roll the stats
     ClearScreen();
-    RollStats();
 
     // gameplay loop ( is this a good way to do it? )
     do {

@@ -1,3 +1,5 @@
+#ifndef COMBAT_HPP
+#define COMBAT_HPP
 #include "funct.hpp"
 #include <iostream>
 
@@ -8,7 +10,8 @@ void Combat() {
   ClearScreen();
   DisplayPlayerStats();
   RandomEnemy();
-  std::cout << "A " << Enemy.Name << " approach.\n";
+
+  std::cout << "\nA " << Enemy.Name << " approach.\n";
   Press_Enter();
   ClearScreen();
   int PlayerTurnDamage{0};
@@ -19,29 +22,31 @@ void Combat() {
 
   do {
     char combat_choice;
-    std::cout << "1: Attack\n";
+    std::cout << "1: Strike\n";
     std::cout << "2: Spell[WIP]\n";
-    std::cout << "3: Heal - 2 MP\n";
-    std::cout << "4: End Turn\n";
+    std::cout << "3: End Turn\n";
+    std::cout << "Choice: ";
     std::cin >> combat_choice;
     switch (combat_choice) {
     case '1':
       ClearScreen();
       PlayerTurnDamage = 0;
       for (int i = 0; i < Player.DamageDice; i++) {
-        PlayerTurnDamage = PlayerTurnDamage + rand() % Player.DamageDie + 1;
+        PlayerTurnDamage = PlayerTurnDamage + (rand() % Player.DamageDie + 1) +
+                           (Player.DamageBonus);
       }
       Enemy.Health = Enemy.Health - PlayerTurnDamage;
       if (Enemy.Health <= 0) {
         CombatResolution = 1;
         ClearScreen();
-        Player.Exp = Player.Exp + Enemy.Exp;
+        Player.Exp = Player.Exp + (Enemy.Level / Player.Level) * 40;
         Player.Silver = Player.Silver + Enemy.Silver;
         DisplayPlayerStats();
         DisplayEnemyStats();
         std::cout << "You delivered " << PlayerTurnDamage << " damage("
-                  << Player.DamageDice << "d" << Player.DamageDie << ") to "
-                  << Enemy.Name << ", killing it.\n\n";
+                  << Player.DamageDice << "d" << Player.DamageDie << "+"
+                  << Player.DamageBonus << ") to " << Enemy.Name
+                  << ", killing it.\n";
         break;
       }
 
@@ -52,27 +57,6 @@ void Combat() {
       break;
 
     case '3':
-      ClearScreen();
-      DisplayPlayerStats();
-      DisplayEnemyStats();
-      if (Player.CurMana > 1) {
-        std::cout << "Casting Heal!\n";
-        std::cout << Player.CurHealth;
-        Player.CurHealth = Player.CurHealth + rand() % Player.CCMaxHealth + 1;
-        if (Player.CurHealth > Player.MaxHealth) {
-          Player.CurHealth = Player.MaxHealth;
-        }
-        std::cout << " -> " << Player.CurHealth << "!\n";
-        Player.CurMana = Player.CurMana - 2;
-        Press_Enter();
-      } else {
-        std::cout << "You attempt to cast Heal... but you're out of mana.";
-        Press_Enter();
-        ClearScreen();
-      }
-      break;
-
-    case '4':
       ClearScreen();
       DisplayPlayerStats();
       DisplayEnemyStats();
@@ -112,19 +96,20 @@ void Combat() {
       DisplayEnemyStats();
       if (PlayerTurnDamage > 0) {
         std::cout << "You delivered " << PlayerTurnDamage << " damage("
-                  << Player.DamageDice << "d" << Player.DamageDie << ") to "
-                  << Enemy.Name << ".\n\n";
+                  << Player.DamageDice << "d" << Player.DamageDie << "+"
+                  << Player.DamageBonus << ") to " << Enemy.Name << ".\n";
       }
     }
     if (EnemyTurnDamage > 0) {
       std::cout << "Enemy " << Enemy.Name << " delivered " << EnemyTurnDamage
-                << " damage to You.\n\n";
+                << " damage to You.\n";
     }
   } while (CombatResolution < 1);
 
   if (CombatResolution == 1) {
     std::cout << "You won.\n";
-    std::cout << "Experience gained: " << Enemy.Exp << "\n";
+    std::cout << "Experience gained: " << (Enemy.Level / Player.Level) * 80
+              << "\n";
     std::cout << "Silver gained: " << Enemy.Silver << "\n";
     Press_Enter();
   } else if (CombatResolution == 2) {
@@ -146,70 +131,70 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 1;
-    Enemy.Exp = 100;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 2:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 6;
+    Enemy.Health = 8;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 2;
-    Enemy.Exp = 400;
+    Enemy.DamageDie = 3;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 3:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 6;
+    Enemy.Health = 8;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 2;
-    Enemy.Exp = 400;
+    Enemy.DamageDie = 3;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 4:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 6;
+    Enemy.Health = 8;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 2;
-    Enemy.Exp = 400;
+    Enemy.DamageDie = 3;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 5:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 6;
+    Enemy.Health = 8;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 2;
-    Enemy.Exp = 400;
+    Enemy.DamageDie = 3;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 6:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 6;
+    Enemy.Health = 8;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 2;
-    Enemy.Exp = 400;
+    Enemy.DamageDie = 3;
+    Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 7:
     Enemy.Name = "Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 12;
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 4;
-    Enemy.Exp = 500;
+    Enemy.Level = 2;
     Enemy.Silver = 0;
     break;
   case 8:
     Enemy.Name = "Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 12;
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 4;
-    Enemy.Exp = 500;
+    Enemy.Level = 2;
     Enemy.Silver = 0;
     break;
   case 9:
@@ -218,7 +203,7 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
-    Enemy.Exp = 400;
+    Enemy.Level = 3;
     Enemy.Silver = rand() % 50 + 50;
     break;
   case 10:
@@ -227,23 +212,28 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 2;
     Enemy.DamageDie = 3;
-    Enemy.Exp = 1000;
+    Enemy.Level = 4;
     Enemy.Silver = 0;
     break;
   }
 }
 
 void DisplayPlayerStats() {
-  std::cout << "Level " << Player.Level << " " << Player.Class << "\n";
-  std::cout << "HP " << Player.CurHealth << "/" << Player.MaxHealth << "\n";
-  std::cout << "MP " << Player.CurMana << "/" << Player.MaxMana << "\n";
+  std::cout << "Level " << Player.Level << " " << Player.Race << " "
+            << Player.Class << "\n";
   std::cout << "XP " << Player.Exp << "/1000\n\n";
+  std::cout << "HP " << Player.CurHealth << "/" << Player.MaxHealth << "\n";
+  std::cout << "Str:" << Player.Str << "   Dex:" << Player.Dex << "\n";
+  std::cout << "Con:" << Player.Con << "   Int:" << Player.Int << "\n";
+  std::cout << "Wis:" << Player.Wis << "   Cha:" << Player.Cha << "\n";
 }
 
 void DisplayEnemyStats() {
-  std::cout << "Enemy: " << Enemy.Name << "\nHP: ";
+  std::cout << "\nEnemy: " << Enemy.Name << "\nHP: ";
   for (int i = 0; i < Enemy.Health; i++) {
     std::cout << "-";
   }
-  std::cout << "\n\n";
+  std::cout << "\n";
 }
+
+#endif

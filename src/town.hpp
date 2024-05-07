@@ -1,22 +1,27 @@
+#ifndef TOWN_HPP
+#define TOWN_HPP
 #include "funct.hpp"
+#include "resting.hpp"
 #include <iostream>
 
 void Town() {
   ClearScreen();
   DisplayPlayerStats();
-  std::cout << "Silver: " << Player.Silver << "\n";
-  std::cout << "Would you like to head into town? Y/N\n";
+  std::cout << "\nSilver: " << Player.Silver << "\n";
+  std::cout << "Would you like to head into town?\n";
+  std::cout << "1. Yes\n";
+  std::cout << "2. No\n";
   char townchoice{};
   char townactivity{};
   int towndone{0};
   Player.Rested = 0;
   std::cin >> townchoice;
 
-  if (townchoice == 'y' or townchoice == 'Y') {
+  if (townchoice == '1') {
     do {
       ClearScreen();
       DisplayPlayerStats();
-      std::cout << "1: Inn\n";
+      std::cout << "\n1: Inn\n";
       std::cout << "2: Guilds\n";
       std::cout << "3: Blacksmith\n";
       std::cout << "4: General Store\n";
@@ -52,18 +57,20 @@ void Town() {
       case 'q':
         ClearScreen();
         DisplayPlayerStats();
-        std::cout << "Leaving Town..";
+        std::cout << "\nLeaving Town..";
         Press_Enter();
         ClearScreen();
         towndone = 1;
         break;
       }
     } while (towndone != 1);
-  } else if (townchoice == 'n' or townchoice == 'N') {
+  } else if (townchoice == '2') {
     ClearScreen();
     DisplayPlayerStats();
-    std::cout << "Continuing the hunt..";
+    std::cout << "\nContinuing the hunt..";
     Press_Enter();
     ClearScreen();
   }
 }
+
+#endif
