@@ -16,7 +16,7 @@ void UpdateValues();
 void ClearScreen();
 void ClearStats();
 void Combat();
-void RandomEnemy();
+void RandomEnemyForest();
 void Press_Enter();
 void CheckLvlUp();
 void Resting();
@@ -47,6 +47,7 @@ struct {
   int Silver{0};
   int Rested{0};
   int Defeated{0};
+  int Region{0};
 
   int ClassStats[6] = {0, 0, 0, 0, 0, 0};
   int RaceStats[6] = {0, 0, 0, 0, 0, 0};
@@ -62,10 +63,11 @@ struct {
 
 struct {
   std::string Name{"Missingno"};
-  int Health{1};
+  int Health{100};
   int AC{1};
-  int DamageDie{1};
-  int DamageDice{1};
+  int DamageDie{10};
+  int DamageDice{20};
+  int DamageBonus{0};
   int Level{1};
   int Silver{1};
 } Enemy;

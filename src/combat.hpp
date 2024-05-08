@@ -6,10 +6,23 @@
 int CombatResolution{0};
 
 void Combat() {
+  DisplayPlayerStats();
+  std::cout << "\nRegion Select: \n";
+  std::cout << "1. Forest\n";
+  std::cout << "2. WIP\n";
+  std::cout << "3. WIP\n";
+  std::cout << "Choice: ";
+  std::cin >> Player.Region;
   CombatResolution = 0;
   ClearScreen();
   DisplayPlayerStats();
-  RandomEnemy();
+  if (Player.Region == 1) {
+    RandomEnemyForest();
+  } else if (Player.Region == 2) {
+  } else if (Player.Region == 3) {
+  } else {
+    std::cout << "Ping Stuffe, Player.Region variable broke";
+  }
 
   std::cout << "\nA " << Enemy.Name << " approach.\n";
   Press_Enter();
@@ -39,7 +52,7 @@ void Combat() {
       if (Enemy.Health <= 0) {
         CombatResolution = 1;
         ClearScreen();
-        Player.Exp = Player.Exp + (Enemy.Level / Player.Level) * 40;
+        Player.Exp = Player.Exp + (Enemy.Level / Player.Level) * 80;
         Player.Silver = Player.Silver + Enemy.Silver;
         DisplayPlayerStats();
         DisplayEnemyStats();
@@ -101,8 +114,9 @@ void Combat() {
       }
     }
     if (EnemyTurnDamage > 0) {
-      std::cout << "Enemy " << Enemy.Name << " delivered " << EnemyTurnDamage
-                << " damage to You.\n";
+      std::cout << "Enemy " << EnemyTurnDamage << " damage(" << Enemy.DamageDice
+                << "d" << Enemy.DamageDie << "+" << Enemy.DamageBonus
+                << ") to You.\n";
     }
   } while (CombatResolution < 1);
 
@@ -113,69 +127,72 @@ void Combat() {
     std::cout << "Silver gained: " << Enemy.Silver << "\n";
     Press_Enter();
   } else if (CombatResolution == 2) {
-    ClearScreen();
-    DisplayPlayerStats();
-    DisplayEnemyStats();
-    std::cout << "You lost.\n";
+    std::cout << "\nYou lost.\n";
     Press_Enter();
     Player.Defeated = 1;
   }
 }
 
-void RandomEnemy() {
+void RandomEnemyForest() {
   int x = rand() % 10 + 1;
   switch (x) {
   case 1:
-    Enemy.Name = "Rabbit";
-    Enemy.Health = 2;
-    Enemy.AC = 8;
+    Enemy.Name = "Young Wolf";
+    Enemy.Health = 11;
+    Enemy.AC = 6;
     Enemy.DamageDice = 1;
-    Enemy.DamageDie = 1;
+    Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 2:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 11;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 3:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 11;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 4:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 11;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 5:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 11;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
   case 6:
     Enemy.Name = "Young Wolf";
-    Enemy.Health = 8;
+    Enemy.Health = 11;
     Enemy.AC = 6;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 0;
     Enemy.Level = 1;
     Enemy.Silver = 0;
     break;
@@ -185,6 +202,7 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 4;
+    Enemy.DamageBonus = 1;
     Enemy.Level = 2;
     Enemy.Silver = 0;
     break;
@@ -194,6 +212,7 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 4;
+    Enemy.DamageBonus = 1;
     Enemy.Level = 2;
     Enemy.Silver = 0;
     break;
@@ -203,6 +222,7 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 1;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 2;
     Enemy.Level = 3;
     Enemy.Silver = rand() % 50 + 50;
     break;
@@ -212,6 +232,7 @@ void RandomEnemy() {
     Enemy.AC = 8;
     Enemy.DamageDice = 2;
     Enemy.DamageDie = 3;
+    Enemy.DamageBonus = 4;
     Enemy.Level = 4;
     Enemy.Silver = 0;
     break;

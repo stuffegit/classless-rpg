@@ -64,7 +64,7 @@ void Town() {
         break;
       }
     } while (towndone != 1);
-  } else if (townchoice == '2') {
+  } else {
     ClearScreen();
     DisplayPlayerStats();
     std::cout << "\nContinuing the hunt..";

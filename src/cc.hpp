@@ -11,7 +11,7 @@ void char_creation() {
     DisplayPlayerStats();
     std::cout << "\n1: Class\n";
     std::cout << "2: Race\n";
-    if (Player.Class != "" && Player.Race != "") {
+    if (Player.Class != "Civilian" && Player.Race != "Uncertain") {
       std::cout << "C: Continue\n";
     }
     std::cout << "Q: Quit\n";

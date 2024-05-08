@@ -17,6 +17,7 @@ int main() {
     char_creation();
     // player finished/exited cc and we need to roll the stats
     ClearScreen();
+    int SkipFirstTown = 1;
 
     // gameplay loop ( is this a good way to do it? )
     do {
